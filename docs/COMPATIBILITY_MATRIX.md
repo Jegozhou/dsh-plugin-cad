@@ -20,6 +20,7 @@ command shown in §3; nothing here is a version chosen from memory.
 | profile root | `~/.dsh` (`DSH_HOME`), profiles in `~/.dsh/profiles/<name>` | profile inspection and `dsh --dump-config` | verified |
 | in-app plugin manager state | `~/.dsh/profiles/<name>/.plugin-manager/` | directory present in `cadtest` | observed |
 | stale copy under profile `node_modules` | `dsh 0.1.1-rc.2` | `docs/research/DSH_PLUGIN_API_NOTES.md` §8 — **do not read types from there** | known gotcha |
+| **this repository's verified tree** | **git commit `7b5d88f`** (`113 files changed, 28,709 insertions`) | `git log -1 --format="%h %H %ci"` → `7b5d88f … 2026-10-30 07:21:07 +0800` | verified (our own commit; distinct from the unresolvable *DSH upstream* commit below) |
 
 The plugin pins the host in `package.json`:
 
@@ -77,6 +78,27 @@ through `cad_runtime_status {action:"repair"}`.
 Measured runtime behaviour: first `import build123d` after install ≈ **80 s**
 (bytecode compilation), warm import ≈ **1.6 s** — the reason the runtime is a
 long-lived process (ADR-0002), with `runtimeStartTimeoutMs = 240000`.
+
+---
+
+## 3b. Distribution path verified on this machine
+
+The package is verified as a **packed artifact**, not just as a checkout
+(2026-10-30):
+
+| step | recorded result |
+| --- | --- |
+| `pnpm pack` | `dsh-plugin-cad-0.1.0.tgz` — **297,501 bytes on disk** (`pnpm pack` summary prints 292 KiB), **33 files**, no `python/.venv`, no `__pycache__` (`tar tzf …`, `stat`) |
+| runtime env | `DSH_CAD_VENV=$HOME/.dsh/cad/venv node python/setup-runtime.mjs` → CPython **3.12.13** + pins + self-test; `~/.dsh/cad/venv/bin/python3 -V` = `Python 3.12.13` |
+| install | `dsh plugin --profile cadpkg add dsh-plugin-cad-0.1.0.tgz` → profile `dependencies: dsh-plugin-cad file:…/dsh-plugin-cad-0.1.0.tgz`, `dsh.profile.bundles` includes `dsh-plugin-cad` (`~/.dsh/profiles/cadpkg/package.json`) |
+| run | headless agent in `cadpkg` reported `runtime_python: /Users/<user>/.dsh/cad/venv/bin/python3` and built a 40×30×5 plate with a Ø8 hole — report `volume 5748.672588`, bbox `[40,30,5]`, 8/8 checks pass (`~/.dsh/cad/models/m-6fcb1abc46/revisions/r-0001/report.json`) |
+| final lifecycle E2E | brand-new profile `cadfinal`: **7/7 PASS** — install, compose, boot, security (7 probes), restart (6 model ids before/after), disable (route 404), uninstall (0 stray processes, data intact); `tests/e2e/evidence/final-lifecycle-report.json` `ok:true` |
+| build + suites (same commit `7b5d88f`) | `node build.mjs` → host `lib/index.js` **186.9 KiB** (Node builtins only), browser `lib/client.js` **705.7 KiB** factory bundle; `node --test …` → **88/88 pass, 0 fail, 0 skip**; pytest → **119 passed in 35.92 s** |
+
+Distribution note recorded in `STATUS_host.md`: the venv is **not** packaged
+(machine-specific); a tarball install runs the installer once from the installed
+package directory (`node <profile>/node_modules/dsh-plugin-cad/python/setup-runtime.mjs`),
+or points `$DSH_CAD_PYTHON` / `config.pythonExecutable` at an existing interpreter.
 
 ---
 

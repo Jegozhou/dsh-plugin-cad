@@ -4,6 +4,9 @@
   `docs/IMPLEMENTATION_PLAN.md`)
 - **Pinned platform:** DeepSeek Harness `0.2.1-rc.3`, `@deepseek-ai/cordis 4.0.5`
   (see `docs/COMPATIBILITY_MATRIX.md`)
+- **Verified tree:** git commit `7b5d88f` (113 files, 28,709 insertions); acceptance
+  **12 PASS / 0 FAIL / 0 PARTIAL** (E†: independent parser, not a commercial CAD
+  app) at that commit
 - **Normative inputs:** `docs/research/DSH_PLUGIN_API_NOTES.md` (host recon),
   `docs/research/SPEC_P0.md` (product spec), `src/contracts/*.js` (tool and wire
   contracts)
@@ -382,16 +385,16 @@ controller `cancel()` → `job.cancel` to the runtime → runtime aborts the bui
 and returns `cancelled`. The runtime itself must stay healthy and reusable
 (brief scenario H).
 
-> **Recorded defect (still open at this snapshot).** Scenario H is `FAIL`, twice.
-> (1) `tests/e2e/RESULTS.md` §H: a background build was rejected because
-> `JobStart.owner` must be the session-id string on this host version, and the
-> failed start left the model locked; the tool layer now forwards `exec.agent.id`.
-> (2) `tests/e2e/agent-e2e-report.json` (06:46): jobs start, but the scenario's
-> "heavy part" is rejected by `feature_effects` because a 4 mm all-edge fillet
-> rounds a 24-hole bolt circle's rims, so the build fails in milliseconds and
-> there is nothing in flight to cancel. Cancellation is not claimed to work until
-> a re-run with a valid heavy part is recorded. See `docs/TEST_REPORT.md` §3 and
-> `docs/DSH_INTEGRATION.md` §4.
+> **Recorded H history (now PASS).** Cancellation failed three times, each time
+> for a distinct `dsh-jobs-local` 0.1.1→0.2.1 contract drift found by a recorded
+> run: (1) `JobStart.owner` had to be the session-id string, not the Agent object;
+> (2) the registry also fences `get/read/kill/list` by caller, so the *caller*
+> must be that session-id string; (3) `read(id)` returns
+> `{chunks,lossy,result,job}`, not the typings' `{text,snapshot}`. All three were
+> fixed by host-eng with regression tests. The fourth run passed: the queued job
+> reached terminal `killed`, the cancelled revision was persisted
+> `failed`/`cancelled` with 0 artifacts, and the runtime stayed healthy. Full
+> history: `docs/TEST_REPORT.md` §3, `tests/e2e/RESULTS.md` §H/§H-PASS.
 
 ---
 
@@ -424,10 +427,10 @@ evidence is in `docs/research/STATUS_host.md`, `STATUS_client.md`,
 | error taxonomy | `src/contracts/errors.js` | contract frozen |
 | runtime wire protocol | `src/contracts/protocol.js` | contract frozen |
 | Host plugin row + config | `cordis.patch.yml`, `package.json` | pinned |
-| Host implementation | `src/host/` → `lib/index.js` | `STATUS_host.md`: typecheck+bundle OK, **83/83 host unit+integration tests pass** (incl. real build123d); acceptance evidence §A, §B, §C, §G, §I, §J, §K, §L; background jobs fail (§H) |
-| Client implementation | `src/client/` → `lib/client.js` | `STATUS_client.md` §3: real-Harness Chrome E2E 12/12 steps (panel, WebGL GLB, orbit, pick, reload, live revision follow r-0003→r-0004) — F/G acceptance PASS |
+| Host implementation | `src/host/` → `lib/index.js` | `STATUS_host.md`: typecheck+bundle OK, **88/88 host unit+integration tests pass** (incl. real build123d); acceptance evidence §A, §B, §C, §G, §H, §I, §J, §K, §L |
+| Client implementation | `src/client/` → `lib/client.js` | `STATUS_client.md` §3 + final clean run: real-Harness Chrome E2E **13/13 steps** (panel, WebGL GLB, orbit, pick, reload, live revision follow r-0005→r-0006), `client-e2e-report.json` `ok:true` — F/G acceptance PASS |
 | Python runtime | `python/cad_runtime/` | D PASS; `STATUS_runtime.md` §2 self-test + **119 pytest tests pass** (reproduced twice); independent STEP/GLB verification in `RESULTS.md` §M1-E |
-| End-to-end scenarios A–L | — | **11 PASS / 0 PARTIAL / 1 FAIL (H)** — `docs/TEST_REPORT.md` §2 |
+| End-to-end scenarios A–L | — | **12 PASS / 0 FAIL / 0 PARTIAL** (E†: independent parser, not a commercial CAD app) — `docs/TEST_REPORT.md` §2 |
 
 ---
 

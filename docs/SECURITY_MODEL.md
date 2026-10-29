@@ -211,7 +211,8 @@ raise them.
 
 - **No installation at plugin load, tool call or build.** The runtime is expected
   to be prepared once, explicitly, by:
-  - `npm run setup:python` (`node python/setup-runtime.mjs`) — documented bootstrap;
+  - `npm run setup:python` (`node python/setup-runtime.mjs`) — documented bootstrap,
+    with `$DSH_CAD_VENV` / `--venv` choosing the environment location;
   - or `cad_runtime_status {action:"repair"}` — the same non-interactive installer,
     explicitly declared a write/execute operation in its description.
 - **Repair is gated in configuration:** `allowRuntimeInstall` (default **false**)

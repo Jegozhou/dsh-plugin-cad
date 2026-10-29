@@ -319,7 +319,13 @@ template (`web` / `headless` / `tui` / `sdk` / `acp` are the shipped templates p
 upstream `docs/architecture.md`); `--dump-config` then prints the composed tree
 (our `[docs-eng]` run above). **The user's personal `desktop` and `web` profiles
 are never modified by this plugin, its tests or these instructions** — all work
-happens in `cadtest` / `cadheadless`.
+happens in dedicated profiles (`cadlife`, `cadtest`, `cadheadless`, `cadpkg`, and
+the brand-new `cadfinal` used for the final lifecycle regression).
+
+The final regression on `cadfinal` ran the whole lifecycle — install, compose,
+boot, security probes, cold restart, disable, uninstall — as **7/7 PASS**
+(`tests/e2e/evidence/final-lifecycle-report.json`, `ok:true`; quoted in
+`tests/e2e/RESULTS.md` "Final regression run").
 
 ### 7.2 Install the plugin
 

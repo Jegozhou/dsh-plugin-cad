@@ -78,8 +78,26 @@ dsh --profile cadtest --dump-config | grep -A3 dsh-plugin-cad
 
 `dsh plugin add` forwards to pnpm inside the profile and adds the package to
 `dsh.profile.bundles`, which is what makes the plugin's `cordis.patch.yml` take
-effect. There is no manual profile editing step. (Verified twice on this machine;
-see [acceptance status](#acceptance-status).)
+effect. There is no manual profile editing step. (Verified on this machine; see
+[acceptance status](#acceptance-status).)
+
+### Install from a packed tarball (distribution path, verified)
+
+For a packaged install instead of a checkout:
+
+```sh
+pnpm pack                                    # → dsh-plugin-cad-0.1.0.tgz (297,501 B, 33 files)
+DSH_CAD_VENV=$HOME/.dsh/cad/venv node python/setup-runtime.mjs   # one-time venv + self-test
+dsh plugin --profile cadpkg add dsh-plugin-cad-0.1.0.tgz
+```
+
+Recorded on this machine: the tarball contains no `python/.venv` and no
+`__pycache__`; the setup step created `~/.dsh/cad/venv` with CPython 3.12.13 and
+the pinned wheels and passed the self-test; installing the `.tgz` added it to the
+profile's `dependencies` (`file:…/dsh-plugin-cad-0.1.0.tgz`) and
+`dsh.profile.bundles`; a headless agent in that profile reported
+`runtime_python: /Users/<user>/.dsh/cad/venv/bin/python3` and built a 40×30×5 plate
+with a Ø8 hole (volume 5748.672588, all 8 checks pass).
 
 The plugin row and its configuration are documented in
 [docs/DSH_INTEGRATION.md](docs/DSH_INTEGRATION.md) §2. Defaults are safe; override
@@ -261,6 +279,7 @@ If you set `dataDir`, delete that directory instead. Check the size first
 
 | component | version |
 | --- | --- |
+| verified tree | git commit `7b5d88f` (113 files, 28,709 insertions) |
 | DeepSeek Harness (`dsh`) | `0.2.1-rc.3` |
 | `@deepseek-ai/cordis` | `4.0.5` |
 | bundled Node / pnpm in Harness | `24.21.0` / `11.28.5` |
@@ -304,11 +323,17 @@ As of `docs/TEST_REPORT.md` (profiles `cadlife` / `cadtest` / `cadheadless` /
 | K | Uninstall → no child process, data kept | **PASS** (`strayProcesses=0`, `dataPreserved=true`) |
 | L | No path traversal outside the workspace | **PASS** (7 probes, no leak) |
 
-Summary: **12 PASS, 0 FAIL, 0 PARTIAL**. † E is verified with an independent
-parser + OCCT re-import, not a commercial CAD application (none installed on this
-machine). H passed only on the fourth recorded attempt after three real host
-contract defects were found and fixed — the full history is in
-`docs/TEST_REPORT.md` §3.
+Summary: **12 PASS, 0 FAIL, 0 PARTIAL** at verified tree **git commit `7b5d88f`**
+(113 files, 28,709 insertions). † E is verified with an independent parser + OCCT
+re-import, not a commercial CAD application (none installed on this machine). H
+passed only on the fourth recorded attempt after three real host contract defects
+were found and fixed — the full history is in `docs/TEST_REPORT.md` §3.
+
+The final lifecycle regression ran on a **brand-new profile** (`cadfinal`):
+**7/7 PASS** — install, compose, boot, security (7 traversal probes), restart
+(6 model ids identical before/after), disable (route 404), uninstall (0 stray
+`cad_runtime` processes, data intact). Recorded in
+[tests/e2e/RESULTS.md](tests/e2e/RESULTS.md) "Final regression run".
 
 Earlier mechanism proofs (with a throwaway probe package) are recorded in
 `tests/e2e/RESULTS.md` §M0…§M0-K; they prove the harness mechanics, not this
@@ -346,19 +371,17 @@ P0 is deliberately narrow (`docs/research/SPEC_P0.md` §8):
   verified** — do not claim it.
 - **Host APIs are pre-stable.** Upgrading the Harness beyond `0.2.1-rc.3` is a
   compatibility event, not a routine bump.
-- **Open acceptance issue: cancellation (scenario H).** Two recorded runs failed:
-  the first because a background build was rejected with `has no live agent`
-  (owner shape; fixed in the tool layer), the second because the test part itself
-  was rejected by `feature_effects` (a 4 mm all-edge fillet rounds the rims of a
-  24-hole bolt circle, so only 7 of 24 r=4 cylindrical faces remain), leaving
-  nothing in flight to cancel. Background cancellation is **not claimed to work**
-  until a re-run with a valid heavy part is recorded — see
-  `docs/TEST_REPORT.md` §3.
-- **Known modelling interaction: all-edge fillets on hole patterns.** On a
-  filleted bolt circle the `feature_effects` check can reject an otherwise valid
-  solid (`invalid_geometry`, "expected N cylindrical faces"). Workaround: model
-  the pattern before/without the all-edge fillet, or target specific edges.
-  Whether the check should ignore fillet-consumed rims is an open decision.
+- **Known limitation: `feature_effects` counts cylindrical faces by radius.**
+  If a fillet radius equals a hole radius, the fillet consumes/merges the
+  hole-rim faces and the check can mis-fire. Recorded evidence: Ø8 bolt-circle
+  holes (r=4) + `fillet radius 4 all_edges` → `feature_effects` fails with
+  "7 cylindrical face(s) r=4 mm appeared (expected 24)" → `invalid_geometry`.
+  With a distinct radius (Ø4 holes + fillet 4) the same part builds and all 8
+  checks pass. This is a **conservative heuristic limitation, not a kernel or
+  geometry error** — the B-rep is valid. **Recommendation: keep the fillet radius
+  different from any hole radius** (the skills say the same).
+- **Windows/Linux unsupported.** The runtime's stdio reader uses POSIX `select()`;
+  macOS/Linux is the target, Windows is untested.
 
 ---
 
