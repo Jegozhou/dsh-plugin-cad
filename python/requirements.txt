@@ -1,0 +1,13 @@
+# Runtime dependencies for the dsh-plugin-cad Python CAD runtime.
+#
+# Resolved and verified on this machine with the uv-managed CPython 3.12.13:
+#   build123d 0.13.0  (cadquery-ocp-novtk 8.0.1.1.0, OpenCASCADE 8.0.1)
+#   trimesh   5.2.0   (GLB mesh welding / export / watertight checks)
+#   numpy     2.5.4
+#
+# The three direct dependencies are pinned exactly. Transitive dependencies are
+# resolved by uv and then frozen in python/requirements.lock.txt so a repair
+# install is byte-for-byte reproducible.
+build123d==0.13.0
+trimesh==5.2.0
+numpy==2.5.4

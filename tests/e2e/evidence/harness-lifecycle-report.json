@@ -1,0 +1,24 @@
+{
+  "plugin": "dsh-plugin-cad",
+  "profile": "cadlife",
+  "port": 64901,
+  "startedAt": "2026-10-29T22:34:57.520Z",
+  "scenarios": [
+    {
+      "name": "uninstall",
+      "status": "pass",
+      "detail": "removeExit=0 stillBundled=false routeGone=true strayProcesses=0 dataPreserved=true",
+      "evidence": {
+        "removeExit": 0,
+        "stillBundled": false,
+        "healthAfterUninstall": 404,
+        "strayProcesses": [],
+        "modelsBefore": 18,
+        "modelsAfter": 18,
+        "dataDirPreserved": true
+      }
+    }
+  ],
+  "finishedAt": "2026-10-29T22:34:59.329Z",
+  "ok": true
+}

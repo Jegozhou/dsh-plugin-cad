@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "title": "CAD 查看器",
+    "description": "Harness 内置的三维查看器：以真实 GLB 显示 Python CAD 运行时构建的参数化零件，可旋转/平移/缩放，查看几何与校验警告，并在 Agent 修改模型后自动跟随新修订。"
+  },
+  "panel": "CAD",
+  "title": "CAD 查看器",
+  "empty": "还没有 CAD 模型，请让 Agent 运行 cad_create_model。",
+  "loading": "正在读取模型…",
+  "runtimeUnavailable": "Python CAD 运行时不可用。",
+  "revision": "修订",
+  "history": "修订历史",
+  "geometry": "几何",
+  "volume": "体积",
+  "surfaceArea": "表面积",
+  "boundingBox": "包围盒",
+  "warnings": "警告",
+  "resetView": "重置视角",
+  "fitView": "适应模型",
+  "refresh": "刷新",
+  "retry": "重试",
+  "selectModel": "选择模型",
+  "shortcuts": {
+    "resetView": "R",
+    "fitView": "F",
+    "clearSelection": "Esc"
+  }
+}

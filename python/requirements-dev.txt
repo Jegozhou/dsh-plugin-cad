@@ -1,0 +1,3 @@
+# Developer/test dependencies for the Python CAD runtime.
+# Installed by python/setup-runtime.mjs unless --no-dev is passed.
+pytest==9.2.0

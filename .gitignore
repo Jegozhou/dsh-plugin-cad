@@ -1,0 +1,14 @@
+node_modules/
+lib/
+.build/
+python/.venv/
+python/**/__pycache__/
+*.pyc
+.pytest_cache/
+*.log
+*.tgz
+
+# Transient E2E scratch (the client E2E screenshots + report ARE committed as evidence)
+tests/fixtures/out/outside-secret.txt
+tests/fixtures/out/e2e-report.json
+tests/e2e/agent-e2e-report.json

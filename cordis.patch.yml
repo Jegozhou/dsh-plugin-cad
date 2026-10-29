@@ -1,0 +1,23 @@
+# dsh-plugin-cad — native CAD modelling for the DeepSeek Harness.
+#
+# One Host row owns the Python CAD runtime supervisor, the revisioned model
+# store, the HTTP API the viewer calls, the background build jobs and nine
+# agent tools. The browser half is a `dsh.client` module registered into the
+# main panel and the sidebar.
+#
+# User overrides must restate the complete config: loader patches replace
+# `config` wholesale and do not deep-merge.
+- insert:
+    - id: dsh-plugin-cad
+      name: 'dsh-plugin-cad'
+      config:
+        dataDir: ''
+        pythonExecutable: ''
+        pythonPath: ''
+        allowExport: true
+        allowModelWrite: true
+        buildTimeoutMs: 180000
+        runtimeStartTimeoutMs: 240000
+        maxConcurrentBuilds: 1
+        maxBoundingBoxMm: 2000
+        maxArtifactBytes: 134217728

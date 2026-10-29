@@ -1,0 +1,183 @@
+{
+  "plugin": "dsh-plugin-cad",
+  "profile": "cadfinal",
+  "port": 64903,
+  "startedAt": "2026-10-29T23:20:28.569Z",
+  "scenarios": [
+    {
+      "name": "install",
+      "status": "pass",
+      "detail": "exit=0 dependency=true bundle=true",
+      "evidence": {
+        "command": "dsh plugin --profile cadfinal add /Volumes/ZHITAI/texttocad/dsh-plugin-cad",
+        "stdout": "[WARN] The store at /Volumes/ZHITAI/pnpm/store/v11 is not used because packages cannot be hard linked from it into this project. Using the store at /Users/mozhouwen/.pnpm-store/v11 instead. Set storeDir to choose the store.\nAlready up to date\n\ndependencies:\n+ dsh-plugin-cad 0.1.0 <- ../../../../../Volumes/ZHITAI/texttocad/dsh-plugin-cad\n\nDone in 197ms using pnpm v11.28.5",
+        "stderr": "",
+        "bundles": [
+          "@deepseek-ai/dsh-base",
+          "@deepseek-ai/dsh-web-app",
+          "dsh-plugin-cad"
+        ]
+      }
+    },
+    {
+      "name": "compose",
+      "status": "pass",
+      "detail": "dump-config exit=0 row=true",
+      "evidence": {
+        "command": "dsh --profile cadfinal --dump-config",
+        "matched": true,
+        "excerpt": "        disabled: !!js '!ctx.get(''profileContext'')'\n# == dsh-plugin-cad\n- id: dsh-plugin-cad\n  name: dsh-plugin-cad\n  config:\n    dataDir: ''\n    pythonExecutable: ''"
+      }
+    },
+    {
+      "name": "boot",
+      "status": "pass",
+      "detail": "api/health=200 bootGraph=true clientBundle=200",
+      "evidence": {
+        "url": "http://127.0.0.1:64903/?token=AsmwoEMdwqixGbbPF-0td0v3l2W6s7qPOmEpoJkgawg",
+        "apiHealth": {
+          "status": 200,
+          "body": {
+            "ok": true,
+            "plugin": "dsh-plugin-cad",
+            "version": "0.1.0",
+            "protocolVersion": "1.0",
+            "runtime": {
+              "available": false,
+              "state": "stopped",
+              "pid": null,
+              "executable": null,
+              "executableSource": null,
+              "protocolVersion": null,
+              "runtime": null,
+              "restarts": 0,
+              "lastError": null,
+              "lastStartedAt": null,
+              "uptimeMs": 0,
+              "stderrTail": []
+            },
+            "store": {
+              "dataDir": "/Users/mozhouwen/.dsh/cad",
+              "modelCount": 9,
+              "writable": true,
+              "exportAllowed": true
+            },
+            "jobs": {
+              "active": 0
+            },
+            "time": "2026-10-29T23:20:29.792Z"
+          }
+        },
+        "bootGraphHasClient": true,
+        "clientBundle": {
+          "status": 200,
+          "containsFactory": true,
+          "bytes": 722710
+        }
+      }
+    },
+    {
+      "name": "security",
+      "status": "pass",
+      "detail": "7 traversal probes, leaked=false",
+      "evidence": {
+        "probes": [
+          {
+            "probe": "/dsh-plugin-cad/assets/../../../../etc/passwd",
+            "status": 404,
+            "leaked": false,
+            "bytes": 0
+          },
+          {
+            "probe": "/dsh-plugin-cad/assets/%2e%2e%2f%2e%2e%2fetc/passwd",
+            "status": 404,
+            "leaked": false,
+            "bytes": 58
+          },
+          {
+            "probe": "/dsh-plugin-cad/assets/..%2f..%2f..%2fetc%2fpasswd",
+            "status": 404,
+            "leaked": false,
+            "bytes": 58
+          },
+          {
+            "probe": "/dsh-plugin-cad/assets//etc/passwd",
+            "status": 404,
+            "leaked": false,
+            "bytes": 58
+          },
+          {
+            "probe": "/dsh-plugin-cad/assets/%2FVolumes%2FZHITAI%2Ftexttocad%2Fdsh-plugin-cad%2Ftests%2Ffixtures%2Fout%2Foutside-secret.txt",
+            "status": 404,
+            "leaked": false,
+            "bytes": 58
+          },
+          {
+            "probe": "/dsh-plugin-cad/assets/models/%2e%2e%2f%2e%2e%2foutside-secret.txt",
+            "status": 404,
+            "leaked": false,
+            "bytes": 58
+          },
+          {
+            "probe": "/dsh-plugin-cad/api/models/..%2f..%2f..%2fetc%2fpasswd",
+            "status": 400,
+            "leaked": false,
+            "bytes": 121
+          }
+        ]
+      }
+    },
+    {
+      "name": "restart",
+      "status": "pass",
+      "detail": "models before=[m-1755e14839,m-3dad4f54a1,m-6fcb1abc46,m-740edfd961,m-a8c2aa211d,m-d7acceeda8] after=[m-1755e14839,m-3dad4f54a1,m-6fcb1abc46,m-740edfd961,m-a8c2aa211d,m-d7acceeda8]",
+      "evidence": {
+        "beforeStatus": 200,
+        "afterStatus": 200,
+        "beforeIds": [
+          "m-1755e14839",
+          "m-3dad4f54a1",
+          "m-6fcb1abc46",
+          "m-740edfd961",
+          "m-a8c2aa211d",
+          "m-d7acceeda8"
+        ],
+        "afterIds": [
+          "m-1755e14839",
+          "m-3dad4f54a1",
+          "m-6fcb1abc46",
+          "m-740edfd961",
+          "m-a8c2aa211d",
+          "m-d7acceeda8"
+        ],
+        "dataDir": "/Users/mozhouwen/.dsh/cad",
+        "dataDirExists": true
+      }
+    },
+    {
+      "name": "disable",
+      "status": "pass",
+      "detail": "row disabled=true routeAfterDisable=404",
+      "evidence": {
+        "dumpExcerpt": "        disabled: !!js '!ctx.get(''profileContext'')'\n# == dsh-plugin-cad, patched by /Users/mozhouwen/.dsh/profiles/cadfinal/cordis.patch.yml\n- id: dsh-plugin-cad\n  name: dsh-plugin-cad\n  config:\n    dataDir: ''",
+        "healthStatusAfterDisable": 404
+      }
+    },
+    {
+      "name": "uninstall",
+      "status": "pass",
+      "detail": "removeExit=0 stillBundled=false routeGone=true strayProcesses=0 dataPreserved=true",
+      "evidence": {
+        "removeExit": 0,
+        "stillBundled": false,
+        "healthAfterUninstall": 404,
+        "strayProcesses": [],
+        "modelsBefore": 73,
+        "modelsAfter": 73,
+        "dataDirPreserved": true
+      }
+    }
+  ],
+  "finishedAt": "2026-10-29T23:20:38.166Z",
+  "ok": true
+}

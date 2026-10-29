@@ -1,0 +1,147 @@
+{
+  "ok": true,
+  "url": "http://127.0.0.1:64899/?token=<redacted>",
+  "model": {
+    "id": "m-3dad4f54a1",
+    "name": "Rectangular Mounting Bracket",
+    "initialRevision": "r-0005",
+    "finalRevision": "r-0006"
+  },
+  "glbResponses": [
+    {
+      "url": "http://127.0.0.1:64899/dsh-plugin-cad/assets/models/m-3dad4f54a1/r-0005/model.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "url": "http://127.0.0.1:64899/dsh-plugin-cad/assets/models/m-3dad4f54a1/r-0005/model.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "url": "http://127.0.0.1:64899/dsh-plugin-cad/assets/models/m-3dad4f54a1/r-0006/model.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary"
+    },
+    {
+      "url": "http://127.0.0.1:64899/dsh-plugin-cad/assets/models/m-3dad4f54a1/r-0006/model.glb",
+      "status": 200,
+      "contentType": "model/gltf-binary"
+    }
+  ],
+  "apiRequests": [
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/health -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/health -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models?limit=100&include_failed=true -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=full -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/health -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models?limit=100&include_failed=true -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=full -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=full -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/health -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models?limit=100&include_failed=true -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/health -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models?limit=100&include_failed=true -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=full -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?revision=r-0006&include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=full -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models?limit=100&include_failed=true -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/health -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models?limit=100&include_failed=true -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/health -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models?limit=100&include_failed=true -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/health -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models?limit=100&include_failed=true -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=full -> 200",
+    "GET http://127.0.0.1:64899/dsh-plugin-cad/api/models/m-3dad4f54a1?include=summary -> 200"
+  ],
+  "steps": [
+    {
+      "name": "boot the Harness Web UI",
+      "ok": true,
+      "ms": 5645
+    },
+    {
+      "name": "the plugin Host API is reachable from the page",
+      "ok": true,
+      "ms": 9
+    },
+    {
+      "name": "open the CAD panel from the sidebar and render the canvas",
+      "ok": true,
+      "ms": 306
+    },
+    {
+      "name": "the model under test is selected in the rail",
+      "ok": true,
+      "ms": 6
+    },
+    {
+      "name": "a model is auto-selected and shows the Host current revision",
+      "ok": true,
+      "ms": 808
+    },
+    {
+      "name": "a model.glb artifact was fetched with HTTP 200 and model/gltf-binary",
+      "ok": true,
+      "ms": 0
+    },
+    {
+      "name": "orbit with a real pointer drag",
+      "ok": true,
+      "ms": 1053
+    },
+    {
+      "name": "raycast selection shows the part inspect card",
+      "ok": true,
+      "ms": 84
+    },
+    {
+      "name": "the panel revision matches the Host current revision after Refresh",
+      "ok": true,
+      "ms": 44
+    },
+    {
+      "name": "a revision published while the panel is open is followed by polling",
+      "ok": true,
+      "ms": 24232
+    },
+    {
+      "name": "a page reload rediscovers the model and revision from the Host alone",
+      "ok": true,
+      "ms": 5255
+    },
+    {
+      "name": "polling really re-read the detail endpoint while the panel was open",
+      "ok": true,
+      "ms": 0
+    },
+    {
+      "name": "the browser console stayed free of plugin errors",
+      "ok": true,
+      "ms": 0
+    }
+  ],
+  "consoleErrors": [
+    "[deepseek-account] account read failed {field: profile}",
+    "[deepseek-account] account read failed {field: profile}"
+  ],
+  "screenshots": "/Volumes/ZHITAI/texttocad/dsh-plugin-cad/tests/fixtures/out",
+  "generatedAt": "2026-10-29T23:01:17.667Z"
+}

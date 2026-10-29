@@ -1,0 +1,90 @@
+{
+  "name": "dsh-plugin-cad",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Native DeepSeek Harness CAD plugin: declarative parametric modelling through agent tools, a real build123d/OpenCASCADE Python runtime, revisioned artifacts and an in-Harness 3D viewer.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.5",
+    "dsh": "0.2.1-rc.3"
+  },
+  "icon": "./icon.svg",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./contracts/*": "./src/contracts/*",
+    "./python/*": "./python/*",
+    "./icon": "./icon.svg",
+    "./locale/*": "./locale/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "src/contracts/*.js",
+    "python/cad_runtime/*.py",
+    "python/requirements.txt",
+    "python/requirements*.txt",
+    "python/setup-runtime.mjs",
+    "skills/**",
+    "locale/*.json",
+    "icon.svg",
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "dsh": {
+    "plugin": true,
+    "kind": "server",
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "setup:python": "node python/setup-runtime.mjs",
+    "test:unit": "node --test tests/unit/*.test.mjs",
+    "test:integration": "node --test tests/integration/*.test.mjs",
+    "test:python": "python/.venv/bin/python -m pytest tests/python -q",
+    "verify": "node build.mjs && node --test tests/unit/*.test.mjs tests/integration/*.test.mjs",
+    "test:python:setup": "python/.venv/bin/python -m pytest tests/python -q"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "cad",
+    "build123d",
+    "opencascade",
+    "step",
+    "glb"
+  ],
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.186.0",
+    "esbuild": "^0.28.2",
+    "playwright-core": "^1.64.1",
+    "three": "^0.186.1",
+    "typescript": "^5.9.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

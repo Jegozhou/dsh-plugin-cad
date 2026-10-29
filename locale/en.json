@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "title": "CAD Viewer",
+    "description": "In-Harness 3D viewer for revisioned parametric CAD parts: orbit/pan/zoom a real GLB built by the Python CAD runtime, inspect geometry and validation warnings, and follow new revisions as the agent edits the model."
+  },
+  "panel": "CAD",
+  "title": "CAD viewer",
+  "empty": "No CAD models yet. Ask the agent to run cad_create_model.",
+  "loading": "Loading the model…",
+  "runtimeUnavailable": "The Python CAD runtime is not available.",
+  "revision": "Revision",
+  "history": "Revision history",
+  "geometry": "Geometry",
+  "volume": "Volume",
+  "surfaceArea": "Surface area",
+  "boundingBox": "Bounding box",
+  "warnings": "Warnings",
+  "resetView": "Reset view",
+  "fitView": "Fit to model",
+  "refresh": "Refresh",
+  "retry": "Retry",
+  "selectModel": "Select a model",
+  "shortcuts": {
+    "resetView": "R",
+    "fitView": "F",
+    "clearSelection": "Esc"
+  }
+}
