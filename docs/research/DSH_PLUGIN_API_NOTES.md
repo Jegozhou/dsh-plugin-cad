@@ -8,8 +8,8 @@ documentation guesses. Every claim below was checked in at least one of:
 * the type definitions shipped with those packages (`lib/types/**/*.d.ts`),
 * two **real, working third-party native plugins already installed on this
   machine** and used as behavioural references: `dsh-excalidraw`
-  (`/Volumes/ZHITAI/DSHExcalidraw`, TS source) and `dsh-plugin-bidkit`
-  (`/Volumes/ZHITAI/标书/dsh-plugin-bidkit`, JS source). These are host-ecosystem
+  (`<dsh-excalidraw-checkout>`, TS source) and `dsh-plugin-bidkit`
+  (`<dsh-plugin-bidkit-checkout>`, JS source). These are host-ecosystem
   examples; they are **not** the isolated reference project and reading them is
   part of researching the host.
 

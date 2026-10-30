@@ -9,8 +9,8 @@
       "status": "pass",
       "detail": "exit=0 dependency=true bundle=true",
       "evidence": {
-        "command": "dsh plugin --profile cadfinal add /Volumes/ZHITAI/texttocad/dsh-plugin-cad",
-        "stdout": "[WARN] The store at /Volumes/ZHITAI/pnpm/store/v11 is not used because packages cannot be hard linked from it into this project. Using the store at /Users/mozhouwen/.pnpm-store/v11 instead. Set storeDir to choose the store.\nAlready up to date\n\ndependencies:\n+ dsh-plugin-cad 0.1.0 <- ../../../../../Volumes/ZHITAI/texttocad/dsh-plugin-cad\n\nDone in 197ms using pnpm v11.28.5",
+        "command": "dsh plugin --profile cadfinal add <repo>",
+        "stdout": "[WARN] The store at <pnpm-store> is not used because packages cannot be hard linked from it into this project. Using the store at ~/.pnpm-store/v11 instead. Set storeDir to choose the store.\nAlready up to date\n\ndependencies:\n+ dsh-plugin-cad 0.1.0 <- ../../../../..<repo>\n\nDone in 197ms using pnpm v11.28.5",
         "stderr": "",
         "bundles": [
           "@deepseek-ai/dsh-base",
@@ -57,7 +57,7 @@
               "stderrTail": []
             },
             "store": {
-              "dataDir": "/Users/mozhouwen/.dsh/cad",
+              "dataDir": "~/.dsh/cad",
               "modelCount": 9,
               "writable": true,
               "exportAllowed": true
@@ -150,7 +150,7 @@
           "m-a8c2aa211d",
           "m-d7acceeda8"
         ],
-        "dataDir": "/Users/mozhouwen/.dsh/cad",
+        "dataDir": "~/.dsh/cad",
         "dataDirExists": true
       }
     },
@@ -159,7 +159,7 @@
       "status": "pass",
       "detail": "row disabled=true routeAfterDisable=404",
       "evidence": {
-        "dumpExcerpt": "        disabled: !!js '!ctx.get(''profileContext'')'\n# == dsh-plugin-cad, patched by /Users/mozhouwen/.dsh/profiles/cadfinal/cordis.patch.yml\n- id: dsh-plugin-cad\n  name: dsh-plugin-cad\n  config:\n    dataDir: ''",
+        "dumpExcerpt": "        disabled: !!js '!ctx.get(''profileContext'')'\n# == dsh-plugin-cad, patched by ~/.dsh/profiles/cadfinal/cordis.patch.yml\n- id: dsh-plugin-cad\n  name: dsh-plugin-cad\n  config:\n    dataDir: ''",
         "healthStatusAfterDisable": 404
       }
     },

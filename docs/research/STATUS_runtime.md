@@ -89,7 +89,7 @@ Resolved environment (verified here):
 | item | value |
 | --- | --- |
 | interpreter | CPython **3.12.13** (uv-managed; Homebrew Pythons are broken for uv here) |
-| venv | `/Volumes/ZHITAI/texttocad/dsh-plugin-cad/python/.venv` |
+| venv | `<repo>/python/.venv` |
 | build123d | `0.13.0` |
 | OpenCASCADE | `cadquery-ocp-novtk==8.0.1.1.0` (OCP `8.0.1.1`) |
 | trimesh | `5.2.0` |

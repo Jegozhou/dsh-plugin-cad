@@ -221,8 +221,8 @@ Installed with the documented one-liner into two throwaway profiles:
 and `web` profiles were not modified.
 
 ```
-$ dsh plugin --profile cadtest add /Volumes/ZHITAI/texttocad/dsh-plugin-cad
-+ dsh-plugin-cad 0.1.0 <- ../../../../../Volumes/ZHITAI/texttocad/dsh-plugin-cad
+$ dsh plugin --profile cadtest add <repo>
++ dsh-plugin-cad 0.1.0 <- ../../../../..<repo>
 $ node -e "...profile.package.json..." → bundles: ["@deepseek-ai/dsh-base","@deepseek-ai/dsh-web-app","dsh-plugin-cad"]
 ```
 
@@ -497,6 +497,6 @@ Distribution (real run): the packed tarball installed with
 `dsh plugin --profile cadpkg add dsh-plugin-cad-0.1.0.tgz` into a clean profile,
 with the runtime bootstrapped by `DSH_CAD_VENV=$HOME/.dsh/cad/venv node
 python/setup-runtime.mjs`; a headless agent then reported
-`runtime_python:/Users/mozhouwen/.dsh/cad/venv/bin/python3` and built a 40×30×5 mm
+`runtime_python:~/.dsh/cad/venv/bin/python3` and built a 40×30×5 mm
 plate with a Ø8 through-hole — volume 5748.672588 mm³ (analytic exact), bbox
 40×30×5 — proving the Python runtime is not tied to the development symlink.

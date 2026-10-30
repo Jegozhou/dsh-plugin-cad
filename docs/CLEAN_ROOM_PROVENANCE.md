@@ -38,7 +38,7 @@ Two different claims are often conflated; keeping them apart matters:
 
 The reference project was excluded at the process level, not by licence review:
 
-- It was **not cloned** and does not exist anywhere under `/Volumes/ZHITAI` or the
+- It was **not cloned** and does not exist anywhere under `<volume>` or the
   harness home; the workspace contains only `dsh-plugin-cad`.
 - It was **not fetched** over the network by any team member.
 - It was **not read** — no file, README, issue, screenshot or transcript of it
@@ -99,8 +99,8 @@ a slot, a route, a client bundle on this exact Harness version:
 
 | plugin | location | licence | taken |
 | --- | --- | --- | --- |
-| `dsh-excalidraw` v0.1.0 | `/Volumes/ZHITAI/DSHExcalidraw` | MIT | registration patterns for tools, slots, client factory bundle |
-| `dsh-plugin-bidkit` v0.1.0 | `/Volumes/ZHITAI/标书/dsh-plugin-bidkit` | MIT | registration patterns for tools, routes, jobs, locale |
+| `dsh-excalidraw` v0.1.0 | `<dsh-excalidraw-checkout>` | MIT | registration patterns for tools, slots, client factory bundle |
+| `dsh-plugin-bidkit` v0.1.0 | `<dsh-plugin-bidkit-checkout>` | MIT | registration patterns for tools, routes, jobs, locale |
 
 Neither is a CAD project and neither is the reference project. What was taken is
 API usage, not product design or CAD logic. Both are MIT-licensed, so no

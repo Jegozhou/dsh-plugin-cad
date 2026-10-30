@@ -57,7 +57,7 @@ resolve newer patch releases — that is why `pnpm-lock.yaml` is committed.
 | component | version | how verified | status |
 | --- | --- | --- | --- |
 | uv | **0.9.13** (Homebrew) | `uv --version` | verified |
-| CPython | **3.12.13** (uv-managed, `cpython-3.12-macos-aarch64-none`) | `uv python list`; `/Volumes/ZHITAI/uv/python/cpython-3.12-macos-aarch64-none/bin/python3.12 -V` | verified |
+| CPython | **3.12.13** (uv-managed, `cpython-3.12-macos-aarch64-none`) | `uv python list`; `<uv-python-3.12>/bin/python3.12 -V` | verified |
 | virtualenv | `python/.venv` | `pyvenv.cfg` present; interpreter works | verified |
 | `build123d` | **0.13.0** | `python/.venv/bin/python -c "import importlib.metadata as m; print(m.version('build123d'))"`; also pinned in `python/requirements.txt` | verified |
 | `cadquery-ocp-novtk` (OCP bindings) | **8.0.1.1.0** | same command against the venv; `OCP.__version__` = `8.0.1.1` | verified |
@@ -187,6 +187,6 @@ Expected values: `0.2.1-rc.3` · node 24.21.0 bundled / 24.15.0 dev · cordis 4.
 | OS | macOS 26.2 (build 25C56) |
 | arch | arm64 (`uname -m`), Apple M4, 16 GB unified memory |
 | harness home | `~/.dsh` |
-| plugin repo | `/Volumes/ZHITAI/texttocad/dsh-plugin-cad` |
-| Python venv | `/Volumes/ZHITAI/texttocad/dsh-plugin-cad/python/.venv` |
-| uv CPython | `/Volumes/ZHITAI/uv/python/cpython-3.12-macos-aarch64-none/bin/python3.12` |
+| plugin repo | `<repo>` |
+| Python venv | `<repo>/python/.venv` |
+| uv CPython | `<uv-python-3.12>/bin/python3.12` |

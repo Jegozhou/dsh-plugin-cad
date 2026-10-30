@@ -330,7 +330,7 @@ boot, security probes, cold restart, disable, uninstall — as **7/7 PASS**
 ### 7.2 Install the plugin
 
 ```sh
-dsh plugin --profile cadtest add /Volumes/ZHITAI/texttocad/dsh-plugin-cad
+dsh plugin --profile cadtest add <repo>
 ```
 
 `[lead]` Verified twice on this machine: this single command runs `pnpm add`

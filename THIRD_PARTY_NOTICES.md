@@ -232,8 +232,8 @@ use the host API**, not for product design or CAD logic
 
 | project | version | license | location |
 | --- | --- | --- | --- |
-| dsh-excalidraw | 0.1.0 | MIT (© 2026 Jegozhou) | `/Volumes/ZHITAI/DSHExcalidraw` |
-| dsh-plugin-bidkit | 0.1.0 | MIT (© 2026 BidKit contributors) | `/Volumes/ZHITAI/标书/dsh-plugin-bidkit` |
+| dsh-excalidraw | 0.1.0 | MIT (© 2026 Jegozhou) | `<dsh-excalidraw-checkout>` |
+| dsh-plugin-bidkit | 0.1.0 | MIT (© 2026 BidKit contributors) | `<dsh-plugin-bidkit-checkout>` |
 
 Neither is a dependency, neither is bundled, and neither is the text-to-CAD
 reference project.

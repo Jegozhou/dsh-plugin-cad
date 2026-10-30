@@ -317,7 +317,7 @@ GPUs/drivers other than this machine's Chrome/SwiftShader.
 
 ```sh
 # build both halves
-cd /Volumes/ZHITAI/texttocad/dsh-plugin-cad && node build.mjs
+cd <repo> && node build.mjs
 
 # real-Harness E2E (skips cleanly, exit 0, when DSH_WEB_URL is unset)
 DSH_WEB_URL="http://127.0.0.1:64899/?token=..." node tests/e2e/client-viewer.e2e.mjs

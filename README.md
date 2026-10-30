@@ -69,17 +69,35 @@ user's personal `desktop`/`web` profiles.
 dsh --profile cadtest --from-default-profile web --dump-config          # viewer profile
 dsh --profile cadheadless --from-default-profile headless --dump-config # agent profile
 
-# 2. install this plugin (adds the package AND its bundle entry)
-dsh plugin --profile cadtest add /Volumes/ZHITAI/texttocad/dsh-plugin-cad
+# 2. install this plugin from GitHub (adds the package AND its bundle entry)
+dsh plugin --profile cadtest add github:Jegozhou/dsh-plugin-cad
 
-# 3. confirm the plugin row is composed into the tree
+# 3. bootstrap the Python CAD runtime once (uv-managed CPython 3.12 + pinned wheels)
+node ~/.dsh/profiles/cadtest/node_modules/dsh-plugin-cad/python/setup-runtime.mjs
+
+# 4. confirm the plugin row is composed into the tree
 dsh --profile cadtest --dump-config | grep -A3 dsh-plugin-cad
 ```
 
+From a local checkout, replace step 2 with the path to your clone:
+
+```sh
+git clone https://github.com/Jegozhou/dsh-plugin-cad && cd dsh-plugin-cad
+pnpm install && node build.mjs            # dev/build deps; lib/ is also committed
+dsh plugin --profile cadtest add "$PWD"
+node python/setup-runtime.mjs             # or DSH_CAD_VENV=... to share one venv
+```
+
+`lib/index.js` and `lib/client.js` are committed so a GitHub install needs no
+build step; run `node build.mjs` after changing `src/`. The Python runtime is
+never installed implicitly — step 3 is the only thing that creates a venv, and
+`cad_runtime_status {"action":"repair"}` only re-probes unless
+`allowRuntimeInstall` is enabled.
+
 `dsh plugin add` forwards to pnpm inside the profile and adds the package to
 `dsh.profile.bundles`, which is what makes the plugin's `cordis.patch.yml` take
-effect. There is no manual profile editing step. (Verified on this machine; see
-[acceptance status](#acceptance-status).)
+effect. There is no manual profile editing step. (Verified on this machine for
+both the GitHub and local-checkout forms; see [acceptance status](#acceptance-status).)
 
 ### Install from a packed tarball (distribution path, verified)
 

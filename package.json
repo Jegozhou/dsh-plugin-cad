@@ -86,5 +86,14 @@
     "onlyBuiltDependencies": [
       "esbuild"
     ]
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jegozhou/dsh-plugin-cad.git"
+  },
+  "homepage": "https://github.com/Jegozhou/dsh-plugin-cad",
+  "bugs": {
+    "url": "https://github.com/Jegozhou/dsh-plugin-cad/issues"
+  },
+  "author": "Jegozhou"
 }
