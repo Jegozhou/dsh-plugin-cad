@@ -180,6 +180,36 @@ Expected values: `0.2.1-rc.3` · node 24.21.0 bundled / 24.15.0 dev · cordis 4.
 
 ---
 
+## 6b. Install directly from GitHub (verified)
+
+`lib/index.js` and `lib/client.js` are committed in the repository, so the
+GitHub form needs no build step:
+
+```
+$ dsh --profile ghverify --from-default-profile web --dump-config     # brand-new profile
+$ dsh plugin --profile ghverify add github:Jegozhou/dsh-plugin-cad
++ dsh-plugin-cad 0.1.0
+Done in 3.8s using pnpm v11.28.5
+$ node -e "...profile.package.json..."   → {"dep":"github:Jegozhou/dsh-plugin-cad",
+                                             "bundles":[...,"dsh-plugin-cad"]}
+$ dsh --profile ghverify --dump-config | grep -A3 dsh-plugin-cad
+# == dsh-plugin-cad
+- id: dsh-plugin-cad
+  name: dsh-plugin-cad
+$ dsh --profile ghverify --no-open --port 64905
+dsh web: http://127.0.0.1:64905/?token=<redacted>
+$ curl -b <cookie> http://127.0.0.1:64905/dsh-plugin-cad/api/health
+{"ok":true,"plugin":"dsh-plugin-cad","version":"0.1.0","protocolVersion":"1.0", ... }   HTTP 200
+boot graph contains dsh-plugin-cad/client.js
+```
+
+The Python runtime is **not** installed implicitly by this form either: run
+`python/setup-runtime.mjs` once (or point `$DSH_CAD_PYTHON` / `pythonExecutable`
+at an existing venv). In the verification run `~/.dsh/cad/venv` already existed
+from the earlier bootstrap, which is the documented shared location.
+
+---
+
 ## 7. Development machine reference
 
 | item | value |
@@ -187,6 +217,6 @@ Expected values: `0.2.1-rc.3` · node 24.21.0 bundled / 24.15.0 dev · cordis 4.
 | OS | macOS 26.2 (build 25C56) |
 | arch | arm64 (`uname -m`), Apple M4, 16 GB unified memory |
 | harness home | `~/.dsh` |
-| plugin repo | `<repo>` |
+| plugin repo | https://github.com/Jegozhou/dsh-plugin-cad |
 | Python venv | `<repo>/python/.venv` |
 | uv CPython | `<uv-python-3.12>/bin/python3.12` |
